@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<meta name="description" content="Portfolio of Your Name, [your field] intern candidate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:      #EDE7D9;
+    --paper-dim:  #E3DBC9;
+    --ink:        #22282E;
+    --ink-soft:   #55606B;
+    --gold:       #A9761F;
+    --slate:      #3E5C76;
+    --rule:       #C9C0AC;
+    --white:      #FAF7F0;
+    --maxw: 780px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--gold); color:var(--white); }
+
+  a{ color:var(--slate); }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--ink);
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Header / nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(237,231,217,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  nav.links{ display:flex; gap:24px; }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+  }
+  nav.links a:hover{ color:var(--gold); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--rule);
+  }
+  .hero .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--slate);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  .hero p.pitch{
+    margin-top:24px;
+    max-width:52ch;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+  }
+  .hero .actions{
+    margin-top:34px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:11px 20px;
+    text-decoration:none;
+    font-size:0.95rem;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .btn.primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn.primary:hover{ background:var(--gold); border-color:var(--gold); }
+  .btn:not(.primary):hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- Section shell ---------- */
+  section{
+    padding:56px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:32px;
+  }
+  .section-head h2{ font-size:1.6rem; }
+  .section-head .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--slate);
+  }
+
+  /* ---------- About ---------- */
+  .about-body{ display:flex; gap:40px; flex-wrap:wrap; }
+  .about-text{ flex:1 1 340px; color:var(--ink-soft); max-width:60ch; }
+  .about-text p + p{ margin-top:14px; }
+  .skills{ flex:0 0 220px; }
+  .skills h3{
+    font-family:'Source Sans 3', sans-serif;
+    font-weight:600;
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin-bottom:12px;
+  }
+  .skills ul{ list-style:none; margin:0; padding:0; }
+  .skills li{
+    padding:7px 0;
+    border-top:1px solid var(--rule);
+    font-size:0.95rem;
+  }
+  .skills li:last-child{ border-bottom:1px solid var(--rule); }
+
+  /* ---------- Projects (index / catalog rows) ---------- */
+  .project{
+    padding:26px 0;
+    border-top:1px solid var(--rule);
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:24px;
+  }
+  .project:last-child{ border-bottom:1px solid var(--rule); }
+  .project .when{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    padding-top:4px;
+  }
+  .project h3{
+    font-size:1.25rem;
+    margin-bottom:8px;
+  }
+  .project h3 a{
+    color:var(--ink);
+    text-decoration:none;
+    background-image:linear-gradient(var(--gold), var(--gold));
+    background-repeat:no-repeat;
+    background-size:0% 1px;
+    background-position:0 100%;
+    transition:background-size 0.2s ease;
+    padding-bottom:2px;
+  }
+  .project h3 a:hover{ background-size:100% 1px; }
+  .project p{
+    color:var(--ink-soft);
+    max-width:58ch;
+    margin:0 0 12px;
+  }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px 10px; }
+  .tags span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    color:var(--slate);
+  }
+  .tags span:not(:last-child)::after{ content:'·'; margin-left:10px; color:var(--rule); }
+
+  /* ---------- Experience (real sequence -> dated timeline) ---------- */
+  .timeline{ border-top:1px solid var(--rule); }
+  .role{
+    padding:22px 0;
+    border-bottom:1px solid var(--rule);
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:24px;
+  }
+  .role .dates{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    padding-top:3px;
+  }
+  .role h3{ font-size:1.1rem; margin-bottom:4px; }
+  .role .org{ color:var(--slate); font-size:0.95rem; margin-bottom:8px; }
+  .role p{ color:var(--ink-soft); margin:0; max-width:58ch; }
+
+  /* ---------- Contact ---------- */
+  .contact h2{ font-size:2rem; max-width:14ch; margin-bottom:18px; }
+  .contact p{ color:var(--ink-soft); max-width:50ch; margin-bottom:28px; }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:12px; }
+
+  footer{
+    padding:28px 0 48px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:600px){
+    .project, .role{ grid-template-columns:1fr; gap:6px; }
+    .about-body{ flex-direction:column; }
+    .skills{ flex:1 1 auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top">Your Name</a>
+    <nav class="links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+
+  <section class="hero">
+    <div class="kicker">Portfolio — updated 2026</div>
+    <h1>Your Name</h1>
+    <p class="pitch">
+      [Your field, e.g. Computer Science student] looking for a [Summer 2027] internship.
+      I like building things that [what you like building — be specific: e.g. "make messy data easier to read" or "help small teams ship faster"].
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn" href="mailto:you@email.com">Get in touch</a>
+      <a class="btn" href="/resume.pdf">Resume (PDF)</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="idx">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-body">
+      <div class="about-text">
+        <p>
+          [2–3 sentences about who you are and what you're studying. Mention your school, year, and major.
+          Keep it specific — say what you actually work on, not just "passionate about technology."]
+        </p>
+        <p>
+          [1–2 sentences about what kind of internship you're looking for and what you'd bring to a team.]
+        </p>
+      </div>
+      <div class="skills">
+        <h3>Tools &amp; skills</h3>
+        <ul>
+          <li>Skill / language one</li>
+          <li>Skill / language two</li>
+          <li>Skill / language three</li>
+          <li>Skill / language four</li>
+          <li>Skill / language five</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <span class="idx">02</span>
+      <h2>Selected work</h2>
+    </div>
+
+    <div class="project">
+      <div class="when">2026</div>
+      <div>
+        <h3><a href="#" target="_blank" rel="noopener">Project One Name</a></h3>
+        <p>
+          One or two sentences on what this project is, what problem it solves, and your role in building it.
+        </p>
+        <div class="tags">
+          <span>Tech / tool</span>
+          <span>Tech / tool</span>
+          <span>Tech / tool</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="when">2025</div>
+      <div>
+        <h3><a href="#" target="_blank" rel="noopener">Project Two Name</a></h3>
+        <p>
+          One or two sentences on what this project is, what problem it solves, and your role in building it.
+        </p>
+        <div class="tags">
+          <span>Tech / tool</span>
+          <span>Tech / tool</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="when">2025</div>
+      <div>
+        <h3><a href="#" target="_blank" rel="noopener">Project Three Name</a></h3>
+        <p>
+          One or two sentences on what this project is, what problem it solves, and your role in building it.
+        </p>
+        <div class="tags">
+          <span>Tech / tool</span>
+          <span>Tech / tool</span>
+          <span>Tech / tool</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <span class="idx">03</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="role">
+        <div class="dates">2025 — Present</div>
+        <div>
+          <h3>Role title</h3>
+          <div class="org">Organization name</div>
+          <p>One line on what you did and what came of it — a result if you have one.</p>
+        </div>
+      </div>
+      <div class="role">
+        <div class="dates">2024 — 2025</div>
+        <div>
+          <h3>Role title</h3>
+          <div class="org">Organization name</div>
+          <p>One line on what you did and what came of it — a result if you have one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="section-head">
+      <span class="idx">04</span>
+      <h2>Say hello</h2>
+    </div>
+    <p>
+      Open to internship opportunities starting [month/year]. The fastest way to reach me is email.
+    </p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:you@email.com">you@email.com</a>
+      <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Your Name. Built for GitHub Pages.
+  </footer>
+
+</div>
+
+</body>
+</html>
