@@ -196,6 +196,12 @@
   .thumb.has-photo .fallback-icon{ display:none; }
   .thumb.has-photo .tag-no{ color:#fff; text-shadow:0 1px 4px rgba(0,0,0,.65); }
 
+  /* Use for photos whose aspect ratio doesn't match the wide thumb box —
+     shows the whole image (letterboxed) instead of cropping it to fill. */
+  .thumb.fit-contain{ background-color:#e8e4da; }
+  .thumb.fit-contain.has-photo{ background-size:contain; background-repeat:no-repeat; }
+  .thumb.fit-contain.has-photo .tag-no{ color:var(--ink-soft); text-shadow:none; }
+
   .project-inner{ padding:clamp(24px,3vw,32px) 0 clamp(32px,4vw,44px); }
   .project .when{ font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--blue); display:block; margin-bottom:8px; }
   .project h3{ font-size:clamp(1.25rem,1.6vw,1.6rem); margin-bottom:14px; }
@@ -353,7 +359,7 @@
 
     <!-- PROJECT 02 — drop a file at assets/project-2.jpg to replace this icon. -->
     <div class="project">
-      <div class="thumb" data-photo="assets/project-2.jpg">
+      <div class="thumb fit-contain" data-photo="assets/project-2.jpg">
         <span class="tag-no">NO. 02</span>
         <svg class="fallback-icon" viewBox="0 0 160 120" aria-hidden="true">
           <rect class="ico-fill" x="28" y="34" width="90" height="52"/>
